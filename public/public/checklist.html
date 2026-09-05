@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>SamiFX — Checklist</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Sami<span>FX</span></div>
+  <div class="tabs">
+    <a class="tab" href="/index.html">Journal</a>
+    <a class="tab active" href="/checklist.html">Checklist</a>
+  </div>
+  <button class="user-chip" id="userChip">···</button>
+</div>
+
+<div class="wrap">
+  <div class="page-title">Confluence Checklist</div>
+  <div class="page-sub">Score your setup across every timeframe before you risk a cent.</div>
+
+  <div class="total-card">
+    <div class="total-pct" id="totalPct">0%</div>
+    <div class="total-grade">Grade <b id="gradeLetter">—</b> · Suggested risk <b id="gradeRisk">0%</b></div>
+    <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+  </div>
+
+  <div id="sections"></div>
+
+  <button class="btn-primary" id="useGradeBtn">Use This Grade → Log Trade</button>
+  <div class="reset-link" id="resetLink">Reset checklist</div>
+</div>
+
+<script src="/js/checklist.js"></script>
+</body>
+</html>
