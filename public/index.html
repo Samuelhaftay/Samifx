@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>SamiFX — Journal</title>
+<link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen" class="login-screen">
+  <div class="brand">Sami<span>FX</span></div>
+  <div class="tag">Your trades. Your discipline. Your edge.</div>
+  <div class="field">
+    <label>Enter your name to open your journal</label>
+    <input id="loginName" type="text" placeholder="e.g. Sami" autocomplete="off" />
+  </div>
+  <button class="btn-primary" id="loginBtn" style="max-width:300px">Open Journal</button>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none">
+  <div class="topbar">
+    <div class="brand">Sami<span>FX</span></div>
+    <div class="tabs">
+      <a class="tab active" href="/index.html">Journal</a>
+      <a class="tab" href="/checklist.html">Checklist</a>
+    </div>
+    <button class="user-chip" id="userChip">···</button>
+  </div>
+
+  <div class="wrap">
+    <div class="page-title">Trade Journal</div>
+    <div class="page-sub">Every entry, every reason, every result.</div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat-value" id="statCount">0</div><div class="stat-label">Trades</div></div>
+      <div class="stat"><div class="stat-value" id="statWinrate">0%</div><div class="stat-label">Win rate</div></div>
+      <div class="stat"><div class="stat-value" id="statPnl">$0</div><div class="stat-label">Net P&L</div></div>
+      <div class="stat"><div class="stat-value" id="statAvgR">0%</div><div class="stat-label">Avg Setup</div></div>
+    </div>
+
+    <div class="ledger" id="ledger">
+      <div class="empty-state">
+        <div class="icon">◇</div>
+        No trades yet. Tap the gold button to log your first one.
+      </div>
+    </div>
+  </div>
+
+  <button class="fab" id="fabAdd">+</button>
+</div>
+
+<!-- ADD / EDIT TRADE MODAL -->
+<div class="modal-overlay" id="tradeModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="modalTitle">Log a Trade</h2>
+      <button class="modal-close" id="closeModal">✕</button>
+    </div>
+
+    <form id="tradeForm">
+      <input type="hidden" id="tradeId" />
+
+      <div class="field">
+        <label>Direction</label>
+        <div class="seg" id="dirSeg">
+          <button type="button" data-val="Buy" class="dir-btn">Buy</button>
+          <button type="button" data-val="Sell" class="dir-btn">Sell</button>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label>Pair</label>
+          <input id="fPair" type="text" placeholder="XAUUSD" required />
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <input id="fDate" type="date" required />
+        </div>
+      </div>
+
+      <div class="row3">
+        <div class="field">
+          <label>Entry</label>
+          <input id="fEntry" type="number" step="any" placeholder="2385.00" />
+        </div>
+        <div class="field">
+          <label>Stop Loss</label>
+          <input id="fSL" type="number" step="any" placeholder="2380.00" />
+        </div>
+        <div class="field">
+          <label>Take Profit</label>
+          <input id="fTP" type="number" step="any" placeholder="2400.00" />
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label>Risk %</label>
+          <input id="fRisk" type="number" step="any" placeholder="2" />
+        </div>
+        <div class="field">
+          <label>Setup Grade</label>
+          <select id="fGrade">
+            <option value="">—</option>
+            <option>A+</option>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label>Result</label>
+          <select id="fResult">
+            <option>Open</option>
+            <option>Win</option>
+            <option>Loss</option>
+            <option>Breakeven</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>P&L ($)</label>
+          <input id="fPnl" type="number" step="any" placeholder="120" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Reason / Confluence</label>
+        <textarea id="fReason" placeholder="Why did you take this trade? Which confluences lined up?"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Notes / Lessons</label>
+        <textarea id="fNotes" placeholder="What went well, what to improve next time..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Screenshot</label>
+        <div class="shot-drop" id="shotDrop">
+          <span id="shotLabel">Tap to attach chart screenshot</span>
+          <input id="fShot" type="file" accept="image/*" style="display:none" />
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary">Save Trade</button>
+      <button type="button" class="btn-secondary" id="deleteTradeBtn" style="display:none">Delete Trade</button>
+    </form>
+  </div>
+</div>
+
+<!-- TRADE DETAIL MODAL -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="detailTitle">Trade</h2>
+      <button class="modal-close" id="closeDetail">✕</button>
+    </div>
+    <div class="detail-view" id="detailBody"></div>
+    <button class="btn-primary" id="editFromDetail" style="margin-top:16px">Edit</button>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+</body>
+      </html>
